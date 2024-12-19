@@ -12,7 +12,6 @@ const Home = () => {
   const [emailResponse, setEmailResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  // const leadId = "";
   const [leadId, setLeadId] = useState('');
 
   const handleLeadSubmit = async () => {
@@ -28,7 +27,6 @@ const Home = () => {
       });
 
       // Extract the lead ID from the response
-      // leadId = response.data.lead_id;
       const leadId = response.data.lead_id;
       console.log("lead id first response : ",leadId)
 
@@ -98,7 +96,7 @@ const Home = () => {
 
         {loading && <Loader message="Please wait, it may take 4-5 minutes..." />}
 
-        {/* {error && <p className="error">{error}</p>} */}
+        {error && <p className="error">{error}</p>}
 
         {leadResponse && (
           <div className="markdown-container">
