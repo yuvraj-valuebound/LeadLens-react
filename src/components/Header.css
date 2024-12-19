@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #004aad; /* A sleek blue background */
+    color: white;
+    padding: 18px;
+    border-bottom: 3px solid #003080;
+    text-align: center;
+  }
+  
+  .logo {
+    width: 60px; /* Adjust size as needed */
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-top: 5px;
+    font-style: italic;
+    opacity: 0.9;
+  }
+  

@@ -1,0 +1,71 @@
+/* Form container with a light orange gradient background */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top left, #b8c7f6, #609af7); /* Light orange gradient */
+    min-height: 70vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Title */
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Input field styles */
+  .input-field {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button styling */
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #f77f00;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #e67c00;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Markdown container styling */
+  .markdown-container {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 400px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+  
