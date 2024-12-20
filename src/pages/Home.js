@@ -102,7 +102,7 @@ const Home = () => {
 
 
         return `
-          <div>
+          <div style="border: 1px solid blue; background-color: #f5f5f5; padding: 10px 40px; margin: 40px 0; border-radius: 10px;">
             <h3 style="color: green;">${title}:</h3>
             ${formattedContent}
           </div>
@@ -139,7 +139,7 @@ const Home = () => {
         {error && <p className="error">{error}</p>}
 
         {leadResponse && (
-          <div>
+          <div style={{ padding: '20px 200px' }}>
             <h2>Lead Details</h2>
             <div
               dangerouslySetInnerHTML={{
@@ -156,7 +156,7 @@ const Home = () => {
         )}
 
         {emailResponse && (
-          <div>
+          <div style={{ padding: '0 40px 20px 40px' , margin: '20px 360px', borderRadius: '10px', backgroundColor: '#f5f5f5', border: '1px solid blue' }}>
             <h2>Generated Email</h2>
             <ReactMarkdown>{emailResponse}</ReactMarkdown>
           </div>
