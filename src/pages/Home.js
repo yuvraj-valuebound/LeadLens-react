@@ -28,7 +28,6 @@ const Home = () => {
 
       // Extract the lead ID from the response
       const leadId = response.data.lead_id;
-      console.log("lead id first response : ",leadId)
 
       if (!leadId) {
         throw new Error('Lead ID not found in the response.');
@@ -37,17 +36,16 @@ const Home = () => {
       // Update the leadId state
       setLeadId(leadId);
 
-      // Second API call with the lead ID
+      // Fetch the transformed lead data
       const secondResponse = await axios.get('/leads/search', {
         params: {
           lead_id: leadId, // Pass lead_id as a query parameter
         },
       });
 
-      console.log("lead id second response: ",leadId)
-
       // Save the final response in leadResponse
       setLeadResponse(secondResponse.data);
+
     } catch (err) {
       setError('There was some problem scrapping the data, Please try again.');
     } finally {
@@ -56,19 +54,61 @@ const Home = () => {
   };
 
   const handleEmailGeneration = async () => {
+    if (!leadId) {
+      setError("Please create a lead first.");
+      return;
+    }
     setLoading(true);
     setError('');
     try {
-      console.log('Using lead ID for email generation:', leadId);
       const response = await axios.post('/emails/generate', {
         lead_id: leadId,
       });
-      setEmailResponse(response.data);
+      setEmailResponse(response.data.email_content);
     } catch (err) {
       setError('Failed to generate email, Please try again.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const formatLeadData = (data) => {
+    const sections = {
+      "Unified Lead Details": data.UnifiedLeadDetails,
+      "Unified Company Details": data.UnifiedCompanyDetails,
+      "Lead Recent Posts": data.LeadRecentPosts,
+      "Company Recent Posts": data.CompanyRecentPosts,
+      "Recent Projects and Works": data.RecentProjectsAndWork,
+      "Keywords": data.Keywords,
+    };
+
+    return Object.entries(sections)
+      .filter(([_, content]) => content) // Exclude null or undefined content
+      .map(([title, content]) => {
+        const formattedContent = Object.entries(content)
+          .filter(([_, value]) => value !== null && value !== undefined) // Exclude null values
+          .map(([key, value]) => {
+            if (Array.isArray(value)) {
+              return `<p><strong>${key}:</strong> ${value
+                .map((item) => (typeof item === 'object' ? JSON.stringify(item, null, 2) : item))
+                .join(', ')}</p>`;
+            }
+            if (typeof value === 'object') {
+              return `<p><strong>${key}:</strong> ${JSON.stringify(value, null, 2)}</p>`;
+            }
+            return `<p><strong>${key}:</strong> ${value}</p>`;
+          })
+          .join('');
+
+
+        return `
+          <div>
+            <h3 style="color: green;">${title}:</h3>
+            ${formattedContent}
+          </div>
+        `;
+      })
+      .join("");
   };
 
   return (
@@ -91,7 +131,7 @@ const Home = () => {
           className="input-field"
         />
         <button onClick={handleLeadSubmit} className="submit-button">
-          Get data for lead
+          Create Lead
         </button>
 
         {loading && <Loader message="Please wait, it may take 4-5 minutes..." />}
@@ -99,8 +139,13 @@ const Home = () => {
         {error && <p className="error">{error}</p>}
 
         {leadResponse && (
-          <div className="markdown-container">
-            <ReactMarkdown>{JSON.stringify(leadResponse, null, 2)}</ReactMarkdown>
+          <div>
+            <h2>Lead Details</h2>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: formatLeadData(leadResponse),
+              }}
+            ></div>
           </div>
         )}
 
@@ -111,8 +156,9 @@ const Home = () => {
         )}
 
         {emailResponse && (
-          <div className="markdown-container">
-            <ReactMarkdown>{JSON.stringify(emailResponse, null, 2)}</ReactMarkdown>
+          <div>
+            <h2>Generated Email</h2>
+            <ReactMarkdown>{emailResponse}</ReactMarkdown>
           </div>
         )}
       </div>
