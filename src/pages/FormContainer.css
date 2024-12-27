@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to top left, #b8c7f6, #609af7); /* Light orange gradient */
+    background: linear-gradient(to bottom right, #ccd7f7, #82aff7);
     min-height: 70vh;
     padding: 20px;
     box-sizing: border-box;
@@ -32,17 +32,18 @@
   /* Button styling */
   .submit-button {
     padding: 10px 20px;
+    margin-top: 20px;
     font-size: 1rem;
     color: white;
-    background-color: #f77f00;
-    border: none;
+    background: linear-gradient(to top left, #85a2f9, #5290f6);
+    border: 1px solid #45618e; ;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.5s ease;
   }
-  
+
   .submit-button:hover {
-    background-color: #e67c00;
+    transform: scale(1.1); /* Scale up the button on hover */
   }
   
   /* Error message styling */

@@ -1,9 +1,8 @@
 .footer {
-    background-color: #003080; /* A matching darker blue */
+    background: linear-gradient(to top left, #87a3f5, #3b83f8);
     color: white;
     text-align: center;
     padding: 15px 10px;
-    border-top: 3px solid #004aad;
     font-size: 0.9rem;
   }
   

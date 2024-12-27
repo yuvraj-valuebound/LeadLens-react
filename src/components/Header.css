@@ -3,17 +3,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #004aad; /* A sleek blue background */
-    color: white;
+    background: linear-gradient(to bottom right, #ccd7f7, #5290f6);
+    /* color: white; */
     padding: 18px;
-    border-bottom: 3px solid #003080;
     text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
   
   .logo {
-    width: 60px; /* Adjust size as needed */
-    height: 60px;
-    margin-bottom: 10px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    margin-top: 5px;
     border-radius: 7px;
   }
   
