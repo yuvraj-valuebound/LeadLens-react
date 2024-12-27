@@ -1,3 +1,5 @@
+// Everything working with dynamic scrapping 
+
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import axios from '../api';
@@ -438,7 +440,7 @@ const Home = () => {
           onChange={(e) => setCompanyName(e.target.value)}
           className="input-field"
         />
-        <button onClick={() => handleLeadSubmit({ person_name: leadName, company_name: companyName })} className="submit-button">
+        <button onClick={() => getLeadData({ person_name: leadName, company_name: companyName })} className="submit-button">
           Create Lead
         </button>
 
