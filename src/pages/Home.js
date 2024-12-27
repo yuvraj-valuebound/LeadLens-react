@@ -360,6 +360,46 @@ const Home = () => {
     }
   }
 
+  const handleLeadSubmit = async () => {
+    setLoading(true);
+    setError('');
+    setLeadResponse(null);
+    setEmailResponse(null);
+    try {
+      // First API call to create the lead
+      const response = await axios.post('/leads/create', {
+        person_name: leadName,
+        company_name: companyName,
+      });
+
+      // Extract the lead ID from the response
+      const leadId = response.data.lead_id;
+
+      if (!leadId) {
+        throw new Error('Lead ID not found in the response.');
+      }
+
+      // Update the leadId state
+      setLeadId(leadId);
+
+      // Fetch the transformed lead data
+      const secondResponse = await axios.get('/leads/search', {
+        params: {
+          lead_id: leadId, // Pass lead_id as a query parameter
+        },
+      });
+
+      // Save the final response in leadResponse
+      setLeadResponse(secondResponse.data);
+
+    } catch (err) {
+      setError('There was some problem scrapping the data, Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   const handleEmailGeneration = async () => {
     if (!leadId) {
       setError("Please create a lead first.");
@@ -398,7 +438,7 @@ const Home = () => {
           onChange={(e) => setCompanyName(e.target.value)}
           className="input-field"
         />
-        <button onClick={() => getLeadData({ person_name: leadName, company_name: companyName })} className="submit-button">
+        <button onClick={() => handleLeadSubmit({ person_name: leadName, company_name: companyName })} className="submit-button">
           Create Lead
         </button>
 
