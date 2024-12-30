@@ -1,4 +1,4 @@
-// Everything working with dynamic scrapping 
+// Everything working with static searching from mongo db. 
 
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
