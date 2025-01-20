@@ -1,4 +1,4 @@
-// Everything working with static searching from mongo db.
+// Everything working with dynamic scrapping
 
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -476,7 +476,10 @@ const Home = () => {
         />
         <button
           onClick={() =>
-            getLeadData({ person_name: leadName, company_name: companyName })
+            handleLeadSubmit({
+              person_name: leadName,
+              company_name: companyName,
+            })
           }
           className="submit-button"
         >
